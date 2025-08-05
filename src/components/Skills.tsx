@@ -11,7 +11,7 @@ const Skills: React.FC<SkillsProps> = ({ darkMode }) => {
     {
       title: 'Frontend Development',
       icon: <Code size={32} />,
-      skills: ['HTML', 'CSS', 'JavaScript' , 'TypeScript' , 'React' , 'TypeScript'],
+      skills: ['HTML', 'CSS', 'JavaScript' , 'React' , 'TypeScript'],
       gradient: 'from-blue-500 to-cyan-500'
     },
     {
