@@ -40,7 +40,7 @@ const Hero: React.FC<HeroProps> = ({ darkMode }) => {
           <div className="mb-8">
             <div>
               <img
-        src="/newpp2.jpg" 
+        src="/pp4.jpg" 
         alt="Profile Illustration"
         className="w-32 h-32 mx-auto mb-6 rounded-full object-cover shadow-xl"
       />
