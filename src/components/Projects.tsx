@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Github, Terminal, Mail, Calculator, Palette } from 'lucide-react';
+import {Terminal, Mail, Calculator, Palette } from 'lucide-react';
 
 interface ProjectsProps {
   darkMode: boolean;
@@ -101,25 +101,6 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
                       {tech}
                     </span>
                   ))}
-                </div>
-
-                <div className="flex space-x-4">
-                  <button className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
-                    darkMode 
-                      ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' 
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}>
-                    <Github size={16} />
-                    <span>Code</span>
-                  </button>
-                  <button className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
-                    darkMode 
-                      ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                      : 'bg-blue-600 text-white hover:bg-blue-700'
-                  }`}>
-                    <ExternalLink size={16} />
-                    <span>Demo</span>
-                  </button>
                 </div>
               </div>
             </div>
