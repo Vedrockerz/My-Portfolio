@@ -10,6 +10,9 @@ interface ContactProps {
 }
 
 const Contact: React.FC<ContactProps> = ({ darkMode }) => {
+  const deployedSiteUrl = 'https://vedrockerz.netlify.app/';
+  const formActivationUrl = `https://formsubmit.co/${contactData.email}`;
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -41,6 +44,7 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
         _subject: `[Portfolio] ${formData.subject}`,
         _template: 'table',
         _captcha: 'false',
+        _next: deployedSiteUrl,
       });
 
       const response = await fetch(`https://formsubmit.co/ajax/${contactData.email}`, {
@@ -255,6 +259,19 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
                   </>
                 )}
               </button>
+
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                First-time live setup: open{' '}
+                <a
+                  href={formActivationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-brand-red hover:text-brand-blood underline underline-offset-2"
+                >
+                  FormSubmit activation
+                </a>{' '}
+                and confirm the email to activate sending for {deployedSiteUrl}.
+              </p>
             </form>
           </motion.div>
         </div>
