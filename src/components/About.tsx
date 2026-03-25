@@ -1,108 +1,64 @@
 import React from 'react';
-import { Code2, Database, Globe, Brain } from 'lucide-react';
+import { motion } from 'framer-motion';
+import SectionTitle from './shared/SectionTitle';
+import { aboutHighlights, profileData } from '../data/portfolioData';
+import { fadeUp, hoverLift, staggerContainer } from '../lib/motion';
 
 interface AboutProps {
   darkMode: boolean;
 }
 
 const About: React.FC<AboutProps> = ({ darkMode }) => {
-  const interests = [
-    {
-      icon: <Code2 size={32} />,
-      title: 'Problem Solving',
-      description: 'Passionate about Data Structures and Algorithms using Java'
-    },
-    {
-      icon: <Database size={32} />,
-      title: 'Python Scripting',
-      description: 'Building efficient scripts and automation tools'
-    },
-    {
-      icon: <Globe size={32} />,
-      title: 'Frontend Development',
-      description: 'Creating responsive and interactive web applications'
-    },
-    {
-      icon: <Brain size={32} />,
-      title: 'AI/ML Exploration',
-      description: 'Currently expanding skills in artificial intelligence and machine learning'
-    }
-  ];
-
   return (
-    <section id="about" className={`py-20 ${
-      darkMode ? 'bg-gray-900' : 'bg-white'
-    }`}>
+    <section id="about" className={`py-20 ${darkMode ? 'bg-zinc-900' : 'bg-white'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className={`text-4xl sm:text-5xl font-bold mb-6 ${
-            darkMode ? 'text-white' : 'text-gray-900'
-          }`}>
-            About <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Me</span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
-        </div>
+        <SectionTitle title="About" accent="Me" subtitle="A concise snapshot of what I build and where I am headed." />
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="order-2 lg:order-1">
-            <p className={`text-lg leading-relaxed mb-6 ${
-              darkMode ? 'text-gray-300' : 'text-gray-700'
-            }`}>
-              I'm a Computer Science student passionate about creating solutions through code. 
-              My journey in technology is driven by curiosity and a desire to build meaningful projects 
-              that make a difference.
-            </p>
-            <p className={`text-lg leading-relaxed mb-8 ${
-              darkMode ? 'text-gray-300' : 'text-gray-700'
-            }`}>
-              Currently exploring open-source contributions and expanding my skills in AI/ML and backend systems. 
-              I believe in the power of collaborative development and continuous learning.
-            </p>
-
-            <div className="space-y-4">
-              <div className={`p-4 rounded-lg ${
-                darkMode ? 'bg-gray-800' : 'bg-gray-50'
-              }`}>
-                <h3 className={`font-semibold mb-2 ${
-                  darkMode ? 'text-white' : 'text-gray-900'
-                }`}>Current Focus</h3>
-                <p className={`${
-                  darkMode ? 'text-gray-300' : 'text-gray-700'
-                }`}>
-                  Building real-world projects while strengthening my foundation in computer science fundamentals.
-                </p>
+        <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-8 items-stretch">
+          <motion.article
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            className="surface-card rounded-2xl p-7 sm:p-8"
+          >
+            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50 mb-4">Who I am</h3>
+            <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">{profileData.summary}</p>
+            <div className="mt-6 grid sm:grid-cols-2 gap-4">
+              <div className="rounded-xl border border-brand-red/20 bg-brand-red/5 p-4">
+                <p className="text-sm uppercase tracking-wider text-brand-red mb-1">Primary Focus</p>
+                <p className="text-zinc-800 dark:text-zinc-200">AI/ML applications and backend-first products</p>
+              </div>
+              <div className="rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white/60 dark:bg-zinc-900/40 p-4">
+                <p className="text-sm uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1">Interests</p>
+                <p className="text-zinc-800 dark:text-zinc-200">Open source, developer tooling, and scalable systems</p>
               </div>
             </div>
-          </div>
+          </motion.article>
 
-          <div className="order-1 lg:order-2">
-            <div className="grid sm:grid-cols-2 gap-6">
-              {interests.map((interest, index) => (
-                <div
-                  key={index}
-                  className={`p-6 rounded-xl transition-all duration-300 hover:scale-105 ${
-                    darkMode 
-                      ? 'bg-gray-800 hover:bg-gray-750' 
-                      : 'bg-gradient-to-br from-white to-gray-50 hover:shadow-xl'
-                  } shadow-lg border ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="grid sm:grid-cols-2 gap-4"
+          >
+            {aboutHighlights.map((item) => {
+              const Icon = item.icon;
+              return (
+                <motion.article
+                  key={item.title}
+                  variants={fadeUp}
+                  whileHover={hoverLift}
+                  className="surface-card rounded-2xl p-5"
                 >
-                  <div className="text-blue-600 mb-4">
-                    {interest.icon}
-                  </div>
-                  <h3 className={`font-semibold mb-2 ${
-                    darkMode ? 'text-white' : 'text-gray-900'
-                  }`}>
-                    {interest.title}
-                  </h3>
-                  <p className={`text-sm ${
-                    darkMode ? 'text-gray-400' : 'text-gray-600'
-                  }`}>
-                    {interest.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+                  <Icon size={24} className="text-brand-red mb-3" />
+                  <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-2">{item.title}</h3>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-300">{item.description}</p>
+                </motion.article>
+              );
+            })}
+          </motion.div>
         </div>
       </div>
     </section>
